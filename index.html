@@ -439,15 +439,15 @@
 
   <!-- SECTION SHORTCUTS -->
   <nav class="nav-shortcuts">
-    <a class="nav-btn" href="#sec-nonveg">🍗 Non Veg</a>
-    <a class="nav-btn" href="#sec-chicken">🐔 Chicken</a>
-    <a class="nav-btn" href="#sec-mutton">🐐 Mutton</a>
-    <a class="nav-btn" href="#sec-fish">🐟 Fish</a>
-    <a class="nav-btn" href="#sec-egg">🥚 Egg</a>
-    <a class="nav-btn" href="#sec-veg">🌿 Veg</a>
-    <a class="nav-btn" href="#sec-roti">🫓 Rotis</a>
-    <a class="nav-btn" href="#sec-snacks">🍟 Snacks</a>
-    <a class="nav-btn" href="#sec-drinks">☕ Drinks</a>
+    <button class="nav-btn" onclick="goTo('sec-nonveg')">🍗 Non Veg</button>
+    <button class="nav-btn" onclick="goTo('sec-chicken')">🐔 Chicken</button>
+    <button class="nav-btn" onclick="goTo('sec-mutton')">🐐 Mutton</button>
+    <button class="nav-btn" onclick="goTo('sec-fish')">🐟 Fish</button>
+    <button class="nav-btn" onclick="goTo('sec-egg')">🥚 Egg</button>
+    <button class="nav-btn" onclick="goTo('sec-veg')">🌿 Veg</button>
+    <button class="nav-btn" onclick="goTo('sec-roti')">🫓 Rotis</button>
+    <button class="nav-btn" onclick="goTo('sec-snacks')">🍟 Snacks</button>
+    <button class="nav-btn" onclick="goTo('sec-drinks')">☕ Drinks</button>
   </nav>
 </header>
 
@@ -826,6 +826,13 @@
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
+  function goTo(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   // Back to top visibility
   const btn = document.getElementById('backTop');
   window.addEventListener('scroll', () => {
