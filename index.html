@@ -21,6 +21,8 @@
     --border-strong: rgba(201,146,10,0.45);
   }
 
+  html { scroll-behavior: smooth; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -815,7 +817,7 @@
   <div class="footer-name">Sarpanch Dhaba</div>
   <div class="footer-note">
     📞 Order Now: <a href="tel:+919914094709" style="color:var(--gold-light); text-decoration:none; font-weight:700;">+91 99140 94709</a><br>
-    All prices in ₹ (Indian Rupees)<span class="dot-sep">·</span>Taxes as applicable<br>
+    <span class="dot-sep">·</span>Taxes as applicable<br>
     Half & Full portions available on all items
   </div>
 </footer>
@@ -824,19 +826,6 @@
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-  // Smooth scroll for anchor links with offset
-  document.querySelectorAll('a.nav-btn[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        const offset = 20;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-
   // Back to top visibility
   const btn = document.getElementById('backTop');
   window.addEventListener('scroll', () => {
