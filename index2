@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarpanch Dhaba — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lora:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #FBF6ED;
+    --surface:  #FFFFFF;
+    --saffron:  #D4860A;
+    --saffron2: #F0A627;
+    --dark:     #1C1008;
+    --red:      #B5290F;
+    --green:    #2A6640;
+    --muted:    #9E8060;
+    --border:   #E8D9BC;
+    --stripe:   #FDF3E0;
+  }
+
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--dark);
+    text-align: center;
+    padding: 36px 20px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 60% at 50% -10%, #3A1A00, transparent);
+  }
+
+  .flame { font-size: 2.2rem; display: block; margin-bottom: 10px; animation: flicker 2s ease-in-out infinite alternate; }
+  @keyframes flicker { from { transform: scale(1) rotate(-2deg); } to { transform: scale(1.1) rotate(2deg); } }
+
+  .h-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 6px;
+    color: var(--saffron2);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .h-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.4rem, 8vw, 4.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .h-dhaba {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--saffron2);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin: 6px 0 14px;
+  }
+
+  .h-special {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--dark);
+    padding: 0 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 3px solid var(--saffron);
+  }
+
+  .nav button {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(240,166,39,0.3);
+    color: #e8d5b0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+
+  .nav button:hover, .nav button.active {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    color: var(--dark);
+  }
+
+  /* ── CONTENT ── */
+  .content { max-width: 960px; margin: 0 auto; padding: 40px 16px 60px; }
+
+  /* ── SECTION ── */
+  .sec { display: none; animation: fadeIn 0.35s ease; }
+  .sec.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--saffron);
+  }
+
+  .sec-icon { font-size: 2rem; line-height: 1; }
+
+  .sec-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .sec-title span { color: var(--saffron); }
+
+  /* ── TABLE WRAPPER ── */
+  .tbl-wrap {
+    background: var(--surface);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+
+  .tbl-label {
+    background: var(--dark);
+    color: var(--saffron2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    background: var(--saffron);
+  }
+
+  thead th {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark);
+    padding: 10px 18px;
+    text-align: left;
+  }
+
+  thead th:not(:first-child) { text-align: center; }
+
+  tbody tr:nth-child(odd)  { background: var(--surface); }
+  tbody tr:nth-child(even) { background: var(--stripe); }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: #FFF5E0; }
+
+  tbody td {
+    padding: 11px 18px;
+    vertical-align: middle;
+  }
+
+  .td-name {
+    font-family: 'Lora', serif;
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .td-sub {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .td-price {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  .td-price::before { content: '₹'; font-size: 0.78em; color: var(--muted); }
+
+  .td-mrp {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  .td-dash {
+    text-align: center;
+    color: #ccc;
+    font-size: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 32px 20px;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    line-height: 2;
+  }
+
+  .footer strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--saffron2);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  .footer a { color: var(--saffron2); text-decoration: none; font-weight: 700; }
+
+  /* Back to top */
+  .btt {
+    position: fixed;
+    bottom: 18px; right: 18px;
+    background: var(--saffron);
+    color: var(--dark);
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  }
+  .btt.on { display: flex; }
+
+  @media (max-width: 560px) {
+    thead th, tbody td { padding: 9px 10px; }
+    .td-name { font-size: 0.9rem; }
+    .td-price { font-size: 0.9rem; }
+    .nav button { font-size: 0.68rem; padding: 6px 10px; }
+    .content { padding: 28px 10px 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <span class="flame">🪔</span>
+  <span class="h-tag">Authentic Punjabi Cuisine</span>
+  <div class="h-name">Sarpanch</div>
+  <div class="h-dhaba">Dhaba</div>
+  <div class="h-special">✦ Special Mutton ✦</div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="active" onclick="show('nonveg',this)">🍗 Non Veg</button>
+  <button onclick="show('veg',this)">🌿 Veg</button>
+  <button onclick="show('roti',this)">🫓 Rotis</button>
+  <button onclick="show('snacks',this)">🍟 Snacks</button>
+  <button onclick="show('drinks',this)">☕ Drinks</button>
+</nav>
+
+<div class="content">
+
+  <!-- NON VEG -->
+  <div class="sec active" id="nonveg">
+    <div class="sec-header">
+      <span class="sec-icon">🍖</span>
+      <div class="sec-title">Non <span>Veg</span></div>
+    </div>
+
+    <!-- Chicken -->
+    <div class="tbl-wrap" id="sec-chicken">
+      <div class="tbl-label">🍗 &nbsp;Chicken</div>
+      <table>
+        <thead><tr><th>Item</th><th>Half</th><th>Full</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Home Made Chicken<span class="td-sub">ਘਰੇਲੂ ਚਿਕਨ</span></td><td class="td-price">320</td><td class="td-price">520</td></tr>
+          <tr><td class="td-name">Kadai Chicken<span class="td-sub">ਕੜਾਹੀ ਚਿਕਨ</span></td><td class="td-price">350</td><td class="td-price">550</td></tr>
+          <tr><td class="td-name">Butter Chicken<span class="td-sub">ਬਟਰ ਚਿਕਨ</span></td><td class="td-price">350</td><td class="td-price">550</td></tr>
+          <tr><td class="td-name">Rada Chicken<span class="td-sub">ਰਾੜਾ ਚਿਕਨ</span></td><td class="td-price">350</td><td class="td-price">550</td></tr>
+          <tr><td class="td-name">Masala Chicken<span class="td-sub">ਮਸਾਲਾ ਚਿਕਨ</span></td><td class="td-price">350</td><td class="td-price">550</td></tr>
+          <tr><td class="td-name">Chilli Chicken<span class="td-sub">ਚਿਲੀ ਚਿਕਨ</span></td><td class="td-price">350</td><td class="td-price">550</td></tr>
+          <tr><td class="td-name">Fry Chicken<span class="td-sub">ਫ੍ਰਾਈ ਚਿਕਨ</span></td><td class="td-price">240</td><td class="td-price">450</td></tr>
+          <tr><td class="td-name">Tandoori Chicken<span class="td-sub">ਤੰਦੂਰੀ ਚਿਕਨ</span></td><td class="td-price">240</td><td class="td-price">450</td></tr>
+          <tr><td class="td-name">Afghani Chicken<span class="td-sub">ਅਫਗਾਨੀ ਚਿਕਨ</span></td><td class="td-price">240</td><td class="td-price">450</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mutton -->
+    <div class="tbl-wrap" id="sec-mutton">
+      <div class="tbl-label">🐐 &nbsp;Mutton</div>
+      <table>
+        <thead><tr><th>Item</th><th>Small</th><th>Half</th><th>Full</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Mutton<span class="td-sub">ਮਟਨ</span></td><td class="td-price">280</td><td class="td-price">520</td><td class="td-price">950</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fish -->
+    <div class="tbl-wrap" id="sec-fish">
+      <div class="tbl-label">🐟 &nbsp;Fish</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Crunchy Fish<span class="td-sub">ਕਰੰਚੀ ਮੱਛੀ</span></td><td class="td-price">300</td></tr>
+          <tr><td class="td-name">Tandoori Fish<span class="td-sub">ਤੰਦੂਰੀ ਮੱਛੀ</span></td><td class="td-price">300</td></tr>
+          <tr><td class="td-name">Fry Fish<span class="td-sub">ਫ੍ਰਾਈ ਮੱਛੀ</span></td><td class="td-price">300</td></tr>
+          <tr><td class="td-name">Fish Curry<span class="td-sub">ਮੱਛੀ ਕਰੀ</span></td><td class="td-price">220</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Egg -->
+    <div class="tbl-wrap" id="sec-egg">
+      <div class="tbl-label">🥚 &nbsp;Egg</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Egg Boiled<span class="td-sub">ਉਬਲੇ ਅੰਡੇ</span></td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Egg Bhurji<span class="td-sub">ਅੰਡਾ ਭੁਰਜੀ</span></td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Omelette<span class="td-sub">ਆਮਲੇਟ</span></td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Egg Curry<span class="td-sub">ਅੰਡਾ ਕਰੀ</span></td><td class="td-dash">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VEG -->
+  <div class="sec" id="veg">
+    <div class="sec-header">
+      <span class="sec-icon">🌿</span>
+      <div class="sec-title">Veg <span>Dishes</span></div>
+    </div>
+    <div class="tbl-wrap">
+      <div class="tbl-label">🌿 &nbsp;Veg</div>
+      <table>
+        <thead><tr><th>Item</th><th>Plate</th><th>Full</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Dal Fry<span class="td-sub">ਦਾਲ ਫਰਾਈ</span></td><td class="td-price">110</td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Dal Makhni<span class="td-sub">ਦਾਲ ਮਖਣੀ</span></td><td class="td-price">110</td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Sev Bhaji<span class="td-sub">ਸੇਵ ਭਾਜੀ</span></td><td class="td-price">120</td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Paneer Bhurji<span class="td-sub">ਪਨੀਰ ਭੁਰਜੀ</span></td><td class="td-price">180</td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Kadai Paneer<span class="td-sub">ਕੜਾਹੀ ਪਨੀਰ</span></td><td class="td-price">240</td><td class="td-price">380</td></tr>
+          <tr><td class="td-name">Shahi Paneer<span class="td-sub">ਸ਼ਾਹੀ ਪਨੀਰ</span></td><td class="td-price">240</td><td class="td-price">380</td></tr>
+          <tr><td class="td-name">Mix Veg<span class="td-sub">ਮਿਕਸ ਵੈਜ</span></td><td class="td-price">90</td><td class="td-dash">—</td></tr>
+          <tr><td class="td-name">Cheese Chilli<span class="td-sub">ਚੀਜ਼ ਚਿਲੀ</span></td><td class="td-price">220</td><td class="td-price">360</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROTIS -->
+  <div class="sec" id="roti">
+    <div class="sec-header">
+      <span class="sec-icon">🫓</span>
+      <div class="sec-title">Rotis <span>&amp; Breads</span></div>
+    </div>
+    <div class="tbl-wrap" id="sec-roti">
+      <div class="tbl-label">🫓 &nbsp;Rotis &amp; Breads</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Tandoori Roti Plain<span class="td-sub">ਤੰਦੂਰੀ ਰੋਟੀ</span></td><td class="td-price">10</td></tr>
+          <tr><td class="td-name">Tandoori Roti Butter<span class="td-sub">ਮੱਖਣ ਤੰਦੂਰੀ ਰੋਟੀ</span></td><td class="td-price">12</td></tr>
+          <tr><td class="td-name">Aloo Paratha<span class="td-sub">ਆਲੂ ਪਰਾਠਾ</span></td><td class="td-price">50</td></tr>
+          <tr><td class="td-name">Gobi Paratha<span class="td-sub">ਗੋਭੀ ਪਰਾਠਾ</span></td><td class="td-price">50</td></tr>
+          <tr><td class="td-name">Butter Naan<span class="td-sub">ਬਟਰ ਨਾਨ</span></td><td class="td-price">40</td></tr>
+          <tr><td class="td-name">Pyaaz Paratha<span class="td-sub">ਪਿਆਜ਼ ਪਰਾਠਾ</span></td><td class="td-price">50</td></tr>
+          <tr><td class="td-name">Missi Roti<span class="td-sub">ਮਿੱਸੀ ਰੋਟੀ</span></td><td class="td-price">50</td></tr>
+          <tr><td class="td-name">Methi Paratha<span class="td-sub">ਮੇਥੀ ਪਰਾਠਾ</span></td><td class="td-price">50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SNACKS -->
+  <div class="sec" id="snacks">
+    <div class="sec-header">
+      <span class="sec-icon">🍟</span>
+      <div class="sec-title">Snacks <span>&amp; Starters</span></div>
+    </div>
+    <div class="tbl-wrap" id="sec-snacks">
+      <div class="tbl-label">🍟 &nbsp;Snacks &amp; Starters</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Green Salad<span class="td-sub">ਹਰਾ ਸਲਾਦ</span></td><td class="td-price">60</td></tr>
+          <tr><td class="td-name">Peanut Masala<span class="td-sub">ਮੂੰਗਫਲੀ ਮਸਾਲਾ</span></td><td class="td-price">90</td></tr>
+          <tr><td class="td-name">Dal Masala<span class="td-sub">ਦਾਲ ਮਸਾਲਾ</span></td><td class="td-price">90</td></tr>
+          <tr><td class="td-name">French Fries<span class="td-sub">ਫ੍ਰੈਂਚ ਫਰਾਈਜ਼</span></td><td class="td-price">140</td></tr>
+          <tr><td class="td-name">Samosa<span class="td-sub">ਸਮੋਸਾ</span></td><td class="td-price">20</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DRINKS -->
+  <div class="sec" id="drinks">
+    <div class="sec-header">
+      <span class="sec-icon">☕</span>
+      <div class="sec-title">Hot <span>&amp; Cold Drinks</span></div>
+    </div>
+
+    <div class="tbl-wrap" id="sec-drinks">
+      <div class="tbl-label">☕ &nbsp;Hot Beverages</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Tea<span class="td-sub">ਚਾਹ</span></td><td class="td-price">20</td></tr>
+          <tr><td class="td-name">Coffee<span class="td-sub">ਕੌਫ਼ੀ</span></td><td class="td-price">30</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl-wrap">
+      <div class="tbl-label">🧊 &nbsp;Water &amp; Cold Beverages</div>
+      <table>
+        <thead><tr><th>Item</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name">Water<span class="td-sub">ਪਾਣੀ</span></td><td class="td-mrp">MRP</td></tr>
+          <tr><td class="td-name">Cold Beverages<span class="td-sub">ਠੰਡੇ ਪੀਣੇ</span></td><td class="td-mrp">MRP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Sarpanch Dhaba</strong>
+  📞 Order Now: <a href="tel:+919914094709">+91 99140 94709</a><br>
+  · Taxes as applicable · Water &amp; cold drinks at MRP
+</footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('btt').classList.toggle('on', window.scrollY > 250);
+  });
+</script>
+</body>
+</html>
